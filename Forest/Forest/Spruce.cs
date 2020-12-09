@@ -6,5 +6,14 @@ namespace Forest
 {
     class Spruce
     {
+        public void CutDown()
+        {
+
+        }
+
+        public void Replant()
+        {
+
+        }
     }
 }

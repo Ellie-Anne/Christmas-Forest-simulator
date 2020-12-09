@@ -6,5 +6,9 @@ namespace Forest
 {
     class Maple
     {
+        public void TapForSyrup()
+        {
+
+        }
     }
 }

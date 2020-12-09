@@ -6,5 +6,9 @@ namespace Forest
 {
     class Deer
     {
+        public void DamageTree()
+        {
+
+        }
     }
 }

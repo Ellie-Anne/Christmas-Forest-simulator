@@ -6,5 +6,19 @@ namespace Forest
 {
     class Wolf
     {
+        public void Eat()
+        {
+
+        }
+
+        public void Die()
+        {
+
+        }
+
+        public void LeaveForest()
+        {
+
+        }
     }
 }

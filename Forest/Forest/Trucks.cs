@@ -6,5 +6,12 @@ namespace Forest
 {
     class Trucks
     {
+        private int NumberOfTrees;
+        private string TreeType;
+
+        public void FillTruck()
+        {
+
+        }
     }
 }
