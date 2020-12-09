@@ -6,7 +6,9 @@ namespace Forest
     {
         static void Main(string[] args)
         {
-            
+            Forest forest = new Forest();
+
+            forest.OutputForest();
         }
     }
 }
