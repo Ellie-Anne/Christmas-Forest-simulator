@@ -19,5 +19,20 @@ namespace Forest
             DeerProtection = _Protection;
             Dove = _Dove;
         }
+
+        public int GetAge()
+        {
+            return (Age);
+        }
+
+        public void AgeUp()
+        {
+            Age += 1;
+        }
+
+        public void OutputTree()
+        {
+            Console.WriteLine("Age: " + Age);
+        }
     }
 }
