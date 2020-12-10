@@ -31,7 +31,7 @@ namespace Forest
                 //makes spruce trees
                 if (RandomTree == 1)
                 {
-                    RandomAge = randint.Next(0, 101);
+                    RandomAge = randint.Next(5, 101);
 
                     RandomBool_asint = randint.Next(0, 2);
 
@@ -44,6 +44,8 @@ namespace Forest
                         Diseased = false;
                     }
 
+                    RandomBool_asint = randint.Next(0, 2);
+
                     if (RandomBool_asint == 0)
                     {
                         Protection = true;
@@ -52,6 +54,8 @@ namespace Forest
                     {
                         Protection = false;
                     }
+
+                    RandomBool_asint = randint.Next(0, 50);
 
                     if (RandomBool_asint == 0)
                     {
@@ -68,7 +72,7 @@ namespace Forest
                 //makes fir trees
                 else
                 {
-                    RandomAge = randint.Next(0, 201);
+                    RandomAge = randint.Next(50, 201);
 
                     RandomAge = randint.Next(0, 101);
 
@@ -127,38 +131,49 @@ namespace Forest
         }
 
         public void IncrementDay()
+        //Other Stuff will go in here, things that happen regualarly, you know
         {
-            
+            //if it is a new year, increase the year number, and reset the day number, and age up the trees
             if (Day == 366)
             {
+                Console.WriteLine("End of Year " + Year);
+                OutputForest();
+
                 Day = 1;
                 Year += 1;
+
                 for (int i = 0;i<10000;i++)
                 {
                     Trees[i].AgeUp();
                 }
             }
 
+            //What is the date?
             Console.WriteLine("Year " + Year);
             Console.WriteLine("Day " + Day);
 
+            //Foresters are only hired for 30 days a year, might as well make it simple, the first 30 days
             if (Day <= 30)
             {
 
+                //We need yo hire 3 Foresters
                 for (int i = 0; i < 3; i++)
                 {
                     HireForester(i);
+                    //Hello Mr.Forester, please go chop some trees
                     Foresters[i].ChopTree(Trees);
                     int ForesterNumber = i + 1;
 
                     Console.WriteLine();
                     
-                    if (Foresters[i].GetCountHarvested() == 0)
+                    if (Foresters[i].GetCountHarvested() == 0) //you didn't chop any
                     {
+                        //Tell the forest simulation managers how worthless you are
                         Console.WriteLine("Forester " + ForesterNumber + " couldn't find any trees");
                     }
-                    else
+                    else //you found some
                     { 
+                        //you are a good forester, how many did you chop, and what species were they
                         Console.WriteLine("Forester " + ForesterNumber + " Harvested " + Foresters[i].GetCountHarvested() + " " + Foresters[i].GetTypeHarvested() + " Trees");
                     }
 
@@ -168,7 +183,7 @@ namespace Forest
 
             Console.WriteLine();
 
-            Day += 1;
+            Day += 1; //Increase the day
         }
 
         public void OutputYear()
@@ -180,6 +195,7 @@ namespace Forest
         {
             int spruce = 0;
             int fir = 0;
+            int maple = 0;
 
             foreach(Tree tree in Trees)
             {
@@ -192,10 +208,15 @@ namespace Forest
                 {
                     fir += 1;
                 }
+                else if (tree is Maple)
+                {
+                    maple += 1;
+                }
             }
 
             Console.WriteLine("There are " + spruce + " Norway Spruce in the forest");
             Console.WriteLine("There are " + fir + " Nordmann Fir in the forest");
+            Console.WriteLine("There are " + maple + " Maple Trees in the forest");
             Console.ReadLine();
         }
 

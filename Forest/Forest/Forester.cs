@@ -104,8 +104,16 @@ namespace Forest
             }
 
 
+            if (ReplantCount % 3 == 0)
+            {
+                trees[i] = new Fir(0, Diseased, Protected, Dove);
+            }
+            else
+            {
+                trees[i] = new Maple(0, Diseased, Protected, Dove);
+            }
 
-            trees[i] = new Fir(0,Diseased,Protected,Dove);
+            ReplantCount += 1;
 
         }
 
@@ -144,8 +152,16 @@ namespace Forest
             }
 
 
+            if (ReplantCount % 3 == 0)
+            {
+                trees[i] = new Spruce(0, Diseased, Protected, Dove);
+            }
+            else
+            {
+                trees[i] = new Maple(0, Diseased, Protected, Dove);
+            }
 
-            trees[i] = new Spruce(0, Diseased, Protected, Dove);
+            ReplantCount += 1;
         }
 
         public int GetCountHarvested()

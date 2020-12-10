@@ -28,6 +28,7 @@ namespace Forest
         public void AgeUp()
         {
             Age += 1;
+            //every year, a tree ages by 1 year
         }
 
         public void OutputTree()
