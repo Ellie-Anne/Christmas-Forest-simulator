@@ -33,7 +33,7 @@ namespace Forest
                 {
                     RandomAge = randint.Next(5, 101);
 
-                    RandomBool_asint = randint.Next(0, 2);
+                    RandomBool_asint = randint.Next(0, 10);
 
                     if (RandomBool_asint == 0)
                     {
@@ -178,9 +178,9 @@ namespace Forest
 
                 }
 
-            }
+                Console.WriteLine();
 
-            Console.WriteLine();
+            }
 
             Day += 1; //Increase the day
         }
@@ -218,9 +218,17 @@ namespace Forest
             Console.WriteLine("There are " + maple + " Maple Trees in the forest");
             Console.WriteLine();
 
-            foreach (Tree tree in Trees)
+            int k = 0;
+
+            for (int i = 0; i<100; i++)
             {
-                tree.OutputTree();
+                for (int j = 0;j<100;j++)
+                {
+                    Trees[k].OutputTree();
+                    k += 1;
+                }
+
+                Console.WriteLine();
             }
 
             Console.ReadLine();

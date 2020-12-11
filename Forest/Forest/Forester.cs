@@ -20,17 +20,22 @@ namespace Forest
 
             while(FirstFound == false & i<10000)
             {
-                if (Trees[i] is Fir & Trees[i].GetAge() >= 25 & Trees[i].GetAge() <= 70)
+                if (Trees[i] is Fir & Trees[i].GetAge() >= 25 & Trees[i].GetAge() <= 70 & Trees[i].GetDiseased() == false)
                 {
                     HarvestFir(Trees);
                     FirstFound = true;
                     TypeHarvested = "Fir";
                 }
-                else if (Trees[i] is Spruce & Trees[i].GetAge()>=90 & Trees[i].GetAge()<=150 )
+                else if (Trees[i] is Spruce & Trees[i].GetAge()>=90 & Trees[i].GetAge()<=150 & Trees[i].GetDiseased() == false)
                 {
                     HarvestSpruce(Trees);
                     FirstFound = true;
                     TypeHarvested = "Spruce";
+                }
+                else if (Trees[i].GetDiseased() == true)
+                {
+                    Burn(Trees);
+                    ReplantSomething(Trees);
                 }
                 i += 1;
             }
@@ -40,11 +45,16 @@ namespace Forest
         {
             while (TreesAttemptedHarvest < MaxFir & i<10000)
             {
-                if (Trees[i] is Fir & Trees[i].GetAge() >= 25 & Trees[i].GetAge() <= 70)
+                if (Trees[i] is Fir & Trees[i].GetAge() >= 25 & Trees[i].GetAge() <= 70 & Trees[i].GetDiseased() == false)
                 {
                     TreesSuccessfullyHarvested.Add(Trees[i]);
                     TreesAttemptedHarvest += 1;
                     Trees[i] = null;
+                    ReplantFir(Trees);
+                }
+                else if (Trees[i].GetDiseased() == true)
+                {
+                    Burn(Trees);
                     ReplantFir(Trees);
                 }
 
@@ -56,11 +66,16 @@ namespace Forest
         {
             while (TreesAttemptedHarvest < MaxSpruce & i<10000)
             {
-                if (Trees[i] is Spruce & Trees[i].GetAge() >= 90 & Trees[i].GetAge() <= 150)
+                if (Trees[i] is Spruce & Trees[i].GetAge() >= 90 & Trees[i].GetAge() <= 150 & Trees[i].GetDiseased() == false)
                 {
                     TreesSuccessfullyHarvested.Add(Trees[i]);
                     TreesAttemptedHarvest += 1;
                     Trees[i] = null;
+                    ReplantSpruce(Trees);
+                }
+                else if (Trees[i].GetDiseased() == true)
+                {
+                    Burn(Trees);
                     ReplantSpruce(Trees);
                 }
 
@@ -76,7 +91,7 @@ namespace Forest
             bool Protected;
             bool Dove;
 
-            if (random.Next(0,2) == 0)
+            if (random.Next(0,10) == 0)
             {
                 Diseased = true;
             }
@@ -106,11 +121,11 @@ namespace Forest
 
             if (ReplantCount % 3 == 0)
             {
-                trees[i] = new Fir(0, Diseased, Protected, Dove);
+                trees[i] = new Maple(0, Diseased, Protected, Dove);
             }
             else
             {
-                trees[i] = new Maple(0, Diseased, Protected, Dove);
+                trees[i] = new Fir(0, Diseased, Protected, Dove);
             }
 
             ReplantCount += 1;
@@ -124,7 +139,7 @@ namespace Forest
             bool Protected;
             bool Dove;
 
-            if (random.Next(0, 2) == 0)
+            if (random.Next(0, 10) == 0)
             {
                 Diseased = true;
             }
@@ -154,14 +169,27 @@ namespace Forest
 
             if (ReplantCount % 3 == 0)
             {
-                trees[i] = new Spruce(0, Diseased, Protected, Dove);
+                trees[i] = new Maple(0, Diseased, Protected, Dove);
             }
             else
             {
-                trees[i] = new Maple(0, Diseased, Protected, Dove);
+                trees[i] = new Spruce(0, Diseased, Protected, Dove);
             }
 
             ReplantCount += 1;
+        }
+
+        public void ReplantSomething(Tree[] Trees)
+        {
+            if (ReplantCount % 5 == 0)
+            {
+                ReplantSpruce(Trees);
+            }
+            else
+            {
+                ReplantFir(Trees);
+            }
+
         }
 
         public int GetCountHarvested()
@@ -172,6 +200,20 @@ namespace Forest
         public string GetTypeHarvested()
         {
             return (TypeHarvested);
+        }
+
+        public void Burn(Tree[] Trees)
+        {
+            if (Trees[i] is Fir)
+            {
+                TypeHarvested = "Fir";
+            }
+            else if(Trees[i] is Spruce)
+            {
+                TypeHarvested = "Spruce";
+            }
+
+            TreesAttemptedHarvest += 1;
         }
     }
 }

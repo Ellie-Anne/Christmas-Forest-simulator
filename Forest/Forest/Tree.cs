@@ -50,5 +50,10 @@ namespace Forest
             }
             Console.ForegroundColor = ConsoleColor.White;
         }
+
+        public bool GetDiseased()
+        {
+            return (Diseased);
+        }
     }
 }
