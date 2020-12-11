@@ -148,13 +148,12 @@ namespace Forest
                 }
             }
 
-            //What is the date?
-            Console.WriteLine("Year " + Year);
-            Console.WriteLine("Day " + Day);
-
             //Foresters are only hired for 30 days a year, might as well make it simple, the first 30 days
             if (Day <= 30)
             {
+                //What is the Date?
+                Console.WriteLine("Year " + Year);
+                Console.WriteLine("Day " + Day);
 
                 //We need yo hire 3 Foresters
                 for (int i = 0; i < 3; i++)
@@ -217,6 +216,13 @@ namespace Forest
             Console.WriteLine("There are " + spruce + " Norway Spruce in the forest");
             Console.WriteLine("There are " + fir + " Nordmann Fir in the forest");
             Console.WriteLine("There are " + maple + " Maple Trees in the forest");
+            Console.WriteLine();
+
+            foreach (Tree tree in Trees)
+            {
+                tree.OutputTree();
+            }
+
             Console.ReadLine();
         }
 

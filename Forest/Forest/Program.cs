@@ -15,6 +15,9 @@ namespace Forest
             {
                 forest.IncrementDay();
             }
+
+            Console.WriteLine("End of year 25")
+            forest.OutputForest();
         }
     }
 }
