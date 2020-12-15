@@ -17,6 +17,7 @@ namespace Forest
             }
 
             Console.WriteLine("End of year 25");
+            forest.TapSyrup();
             forest.OutputForest();
         }
     }
