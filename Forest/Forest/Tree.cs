@@ -36,17 +36,22 @@ namespace Forest
             if(this is Spruce)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.Write("S");
+                Console.Write("S ");
             }
             else if (this is Fir)
             {
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write("F");
+                Console.Write("F ");
             }
             else if (this is Maple)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write("M");
+                Console.Write("M ");
+            }
+            else if (this is BugHotel)
+            {
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.Write("B ");
             }
             Console.ForegroundColor = ConsoleColor.White;
         }
@@ -54,6 +59,25 @@ namespace Forest
         public bool GetDiseased()
         {
             return (Diseased);
+        }
+
+        public bool GetDove()
+        {
+            return (Dove);
+        }
+
+        public void SetDove()
+        {
+            Random Rand = new Random();
+            
+            if(Rand.Next(0,50) == 0)
+            {
+                Dove = true;
+            }
+            else
+            {
+                Dove = false;
+            }
         }
     }
 }
