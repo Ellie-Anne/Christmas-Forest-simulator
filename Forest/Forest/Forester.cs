@@ -224,5 +224,10 @@ namespace Forest
         {
             Trees[i] = new BugHotel();
         }
+
+        public List<Tree> GetTreesSuccessfullyHarvested()
+        {
+            return (TreesSuccessfullyHarvested);
+        }
     }
 }

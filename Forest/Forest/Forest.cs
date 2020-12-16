@@ -12,6 +12,7 @@ namespace Forest
         private int Year = 1;
         private List<Deer> Deers = new List<Deer>();
         private List<Wolf> Wolves = new List<Wolf>();
+        List<Tree> AllHarvested = new List<Tree>();
 
         public Forest()
         {
@@ -106,6 +107,8 @@ namespace Forest
                     Trees[i] = new Fir(RandomAge, Diseased, Protection, Dove);
                 }
             }
+
+            AllHarvested.Add(Trees[0]);
         }
 
         public void HireForester(int ForesterNumber)
@@ -153,6 +156,15 @@ namespace Forest
             {
                 Harvest();
             }
+            else if (Day == 31)
+            {
+                TransportHarvest(AllHarvested);
+                AllHarvested = null;
+                AllHarvested = new List<Tree>();
+                AllHarvested.Add(Trees[0]);
+            }
+
+            
 
             MoveDoves();
             Day += 1; //Increase the day
@@ -163,6 +175,8 @@ namespace Forest
             //What is the Date?
             Console.WriteLine("Year " + Year);
             Console.WriteLine("Day " + Day);
+
+            List<Tree> ForesterHarvest;
 
             //We need yo hire 3 Foresters
             for (int i = 0; i < 3; i++)
@@ -185,9 +199,27 @@ namespace Forest
                     Console.WriteLine("Forester " + ForesterNumber + " Harvested " + Foresters[i].GetCountHarvested() + " " + Foresters[i].GetTypeHarvested() + " Trees");
                 }
 
+                ForesterHarvest = Foresters[i].GetTreesSuccessfullyHarvested();
+                foreach(Tree tree in ForesterHarvest)
+                {
+                    AllHarvested.Add(tree);
+                }
+
             }
 
             Console.WriteLine();
+
+        }
+
+        public void TransportHarvest(List<Tree> Trees)
+        {
+            AllHarvested.RemoveAt(0);
+
+            while(Trees.Count>0)
+            {
+                Trucks truck = new Trucks();
+                truck.FillTruck(Trees);
+            }
         }
 
         public void MoveDoves()
