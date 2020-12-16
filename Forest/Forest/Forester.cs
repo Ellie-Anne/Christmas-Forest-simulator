@@ -20,17 +20,22 @@ namespace Forest
 
             while(FirstFound == false & i<10000)
             {
-                if (Trees[i] is Fir & Trees[i].GetAge() >= 25 & Trees[i].GetAge() <= 70 & Trees[i].GetDiseased() == false & Trees[i].GetDove() == false)
+                if (Trees[i] is Fir & Trees[i].GetAge() >= 25 & Trees[i].GetAge() <= 70 & Trees[i].GetDiseased() == false & Trees[i].GetDove() == false & Trees[i].GetBurnt() == false)
                 {
                     HarvestFir(Trees);
                     FirstFound = true;
                     TypeHarvested = "Fir";
                 }
-                else if (Trees[i] is Spruce & Trees[i].GetAge()>=90 & Trees[i].GetAge()<=150 & Trees[i].GetDiseased() == false & Trees[i].GetDove() == false)
+                else if (Trees[i] is Spruce & Trees[i].GetAge()>=90 & Trees[i].GetAge()<=150 & Trees[i].GetDiseased() == false & Trees[i].GetDove() == false & Trees[i].GetBurnt() == false)
                 {
                     HarvestSpruce(Trees);
                     FirstFound = true;
                     TypeHarvested = "Spruce";
+                }
+                else if(Trees[i].GetBurnt() == true & Trees[i].GetDove() == false)
+                {
+                    TreesAttemptedHarvest += 1;
+                    ReplantSomething(Trees);
                 }
                 else if (Trees[i].GetDiseased() == true & Trees[i].GetDove() == false)
                 {
@@ -49,12 +54,17 @@ namespace Forest
         {
             while (TreesAttemptedHarvest < MaxFir & i<10000)
             {
-                if (Trees[i] is Fir & Trees[i].GetAge() >= 25 & Trees[i].GetAge() <= 70 & Trees[i].GetDiseased() == false & Trees[i].GetDove() == false)
+                if (Trees[i] is Fir & Trees[i].GetAge() >= 25 & Trees[i].GetAge() <= 70 & Trees[i].GetDiseased() == false & Trees[i].GetDove() == false & Trees[i].GetBurnt() == false)
                 {
                     TreesSuccessfullyHarvested.Add(Trees[i]);
                     TreesAttemptedHarvest += 1;
                     Trees[i] = null;
                     ReplantFir(Trees);
+                }
+                else if (Trees[i].GetBurnt() == true & Trees[i].GetDove() == false)
+                {
+                    TreesAttemptedHarvest += 1;
+                    ReplantSomething(Trees);
                 }
                 else if (Trees[i].GetDiseased() == true & Trees[i].GetDove() == false)
                 {
@@ -70,12 +80,17 @@ namespace Forest
         {
             while (TreesAttemptedHarvest < MaxSpruce & i<10000)
             {
-                if (Trees[i] is Spruce & Trees[i].GetAge() >= 90 & Trees[i].GetAge() <= 150 & Trees[i].GetDiseased() == false & Trees[i].GetDove() == false)
+                if (Trees[i] is Spruce & Trees[i].GetAge() >= 90 & Trees[i].GetAge() <= 150 & Trees[i].GetDiseased() == false & Trees[i].GetDove() == false & Trees[i].GetBurnt() == false)
                 {
                     TreesSuccessfullyHarvested.Add(Trees[i]);
                     TreesAttemptedHarvest += 1;
                     Trees[i] = null;
                     ReplantSpruce(Trees);
+                }
+                else if (Trees[i].GetBurnt() == true & Trees[i].GetDove() == false)
+                {
+                    TreesAttemptedHarvest += 1;
+                    ReplantSomething(Trees);
                 }
                 else if (Trees[i].GetDiseased() == true & Trees[i].GetDove() == false)
                 {

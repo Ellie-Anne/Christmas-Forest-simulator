@@ -21,7 +21,6 @@ namespace Forest
             }
 
             Console.WriteLine("Truck was used to transport " + NumberOfTrees + " " + TypeTransporting + " harvested this year.");
-            Console.WriteLine();
         }
 
         public void FillWithFir(List<Tree> Trees)

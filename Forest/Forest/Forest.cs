@@ -13,6 +13,7 @@ namespace Forest
         private List<Deer> Deers = new List<Deer>();
         private List<Wolf> Wolves = new List<Wolf>();
         List<Tree> AllHarvested = new List<Tree>();
+        private bool rain;
 
         public Forest()
         {
@@ -118,6 +119,31 @@ namespace Forest
 
         public void ForestFire()
         {
+            Random ForestFire = new Random();
+            int TreeToBurn;
+            int NumberToBurn;
+            int TotalBurnt = 0;
+
+            if (ForestFire.Next(0,100)==0)
+            {
+                NumberToBurn = ForestFire.Next(0, 1001);
+                for(int i =0; i<= NumberToBurn; i++)
+                {
+                    TreeToBurn = ForestFire.Next(0, 10000);
+
+                    if (Trees[TreeToBurn].GetBurnt() == false)
+                    {
+                        Trees[TreeToBurn].Burn();
+                        TotalBurnt += 1;
+                    }
+                }
+
+                Console.WriteLine("Year " + Year);
+                Console.WriteLine("Day " + Day);
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("FOREST FIRE!!!!!! " + TotalBurnt + " trees were lost");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
 
         }
 
@@ -134,6 +160,17 @@ namespace Forest
         public void IncrementDay()
         //Other Stuff will go in here, things that happen regualarly, you know
         {
+            Random RainChance = new Random();
+
+            if(RainChance.Next(0,10) <3)
+            {
+                rain = true;
+            }
+            else
+            {
+                rain = false;
+            }
+
             //if it is a new year, increase the year number, and reset the day number, and age up the trees
             if (Day == 366)
             {
@@ -162,6 +199,12 @@ namespace Forest
                 AllHarvested = null;
                 AllHarvested = new List<Tree>();
                 AllHarvested.Add(Trees[0]);
+                Console.WriteLine();
+            }
+            
+            if(((Day == 1)|(Day >= 46 & Day <= 50)|(Day>=88 & Day <= 99)|(Day>=151 & Day <=243)|(Day == 256)) & rain == true)
+            {
+                ForestFire();
             }
 
             
@@ -256,11 +299,16 @@ namespace Forest
             int fir = 0;
             int maple = 0;
             int bug_hotel = 0;
+            int dead = 0;
 
             foreach(Tree tree in Trees)
             {
                 string TreeType = Convert.ToString(tree.GetType());
-                if (tree is Spruce)
+                if (tree.GetBurnt() == true)
+                {
+                    dead += 1;
+                }
+                else if (tree is Spruce)
                 {
                     spruce += 1;
                 }
@@ -282,6 +330,7 @@ namespace Forest
             Console.WriteLine("There are " + fir + " Nordmann Fir in the forest");
             Console.WriteLine("There are " + maple + " Maple Trees in the forest");
             Console.WriteLine("There are " + bug_hotel + " Bug Hotels in the forest");
+            Console.WriteLine("There are " + dead + " dead trees in the forest");
             Console.WriteLine();
 
             int k = 0;

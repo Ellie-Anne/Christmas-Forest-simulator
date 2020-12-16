@@ -11,6 +11,7 @@ namespace Forest
         private bool DeerProtection;
         private bool Dove;
         private string Location;
+        private bool Burnt = false;
 
         public Tree(int _Age, bool _Diseased, bool _Protection, bool _Dove)
         {
@@ -33,7 +34,12 @@ namespace Forest
 
         public void OutputTree()
         {
-            if(this is Spruce)
+            if(Burnt == true)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.Write("D ");
+            }
+            else if(this is Spruce)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write("S ");
@@ -50,7 +56,7 @@ namespace Forest
             }
             else if (this is BugHotel)
             {
-                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write("B ");
             }
             Console.ForegroundColor = ConsoleColor.White;
@@ -78,6 +84,16 @@ namespace Forest
             {
                 Dove = false;
             }
+        }
+
+        public void Burn()
+        {
+            Burnt = true;
+        }
+
+        public bool GetBurnt()
+        {
+            return (Burnt);
         }
     }
 }
