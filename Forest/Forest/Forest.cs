@@ -10,8 +10,8 @@ namespace Forest
         private Forester[] Foresters = new Forester[3];
         private int Day = 1;
         private int Year = 1;
-        private List<Deer> Deers = new List<Deer>();
-        private List<Wolf> Wolves = new List<Wolf>();
+        private Herd DeerHerd = new Herd();
+        private Pack WolfPack = new Pack();
         List<Tree> AllHarvested = new List<Tree>();
         private bool rain;
 
