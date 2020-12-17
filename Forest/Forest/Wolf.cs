@@ -6,22 +6,18 @@ namespace Forest
 {
     class Wolf
     {
-        private Boolean gender;
+        private bool gender;
         private int age;
 
-        public void setGender(Boolean newGender)
+        public Wolf(int _age, bool _gender)
         {
-            gender = newGender;
+            age = _age;
+            gender = _gender;
         }
 
-        public Boolean getGender()
+        public bool getGender()
         {
             return gender;
-        }
-
-        public void setAge(int newAge)
-        {
-            age = 0;
         }
 
         public int getAge()
