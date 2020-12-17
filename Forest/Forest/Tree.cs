@@ -11,7 +11,8 @@ namespace Forest
         private bool DeerProtection;
         private bool Dove;
         private string Location;
-        private bool Burnt = false;
+        private int Damage;
+        private bool Dead = false;
 
         public Tree(int _Age, bool _Diseased, bool _Protection, bool _Dove)
         {
@@ -34,12 +35,12 @@ namespace Forest
 
         public void OutputTree()
         {
-            if(Burnt == true)
+            if (Dead == true)
             {
                 Console.ForegroundColor = ConsoleColor.DarkGray;
                 Console.Write("D ");
             }
-            else if(this is Spruce)
+            else if (this is Spruce)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write("S ");
@@ -75,8 +76,8 @@ namespace Forest
         public void SetDove()
         {
             Random Rand = new Random();
-            
-            if(Rand.Next(0,50) == 0)
+
+            if (Rand.Next(0, 50) == 0)
             {
                 Dove = true;
             }
@@ -88,12 +89,23 @@ namespace Forest
 
         public void Burn()
         {
-            Burnt = true;
+            Dead = true;
         }
 
-        public bool GetBurnt()
+        public bool GetDead()
         {
-            return (Burnt);
+            return (Dead);
         }
+
+        public void IncreaseDamage()
+        {
+            Damage += 1;
+
+            if (Damage > 200)
+            {
+                Dead = true;
+            }
+        }
+
     }
 }

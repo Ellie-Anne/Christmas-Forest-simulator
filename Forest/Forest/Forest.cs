@@ -131,7 +131,7 @@ namespace Forest
                 {
                     TreeToBurn = ForestFire.Next(0, 10000);
 
-                    if (Trees[TreeToBurn].GetBurnt() == false)
+                    if (Trees[TreeToBurn].GetDead() == false)
                     {
                         Trees[TreeToBurn].Burn();
                         TotalBurnt += 1;
@@ -186,6 +186,8 @@ namespace Forest
                 {
                     Trees[i].AgeUp();
                 }
+
+                DeerHerd.GrowHerd();
             }
 
             //Foresters are only hired for 30 days a year, might as well make it simple, the first 30 days
@@ -207,8 +209,8 @@ namespace Forest
                 ForestFire();
             }
 
-            
 
+            DeerHerd.DeerAttacks(Trees);
             MoveDoves();
             Day += 1; //Increase the day
         }
@@ -304,7 +306,7 @@ namespace Forest
             foreach(Tree tree in Trees)
             {
                 string TreeType = Convert.ToString(tree.GetType());
-                if (tree.GetBurnt() == true)
+                if (tree.GetDead() == true)
                 {
                     dead += 1;
                 }
