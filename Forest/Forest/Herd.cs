@@ -36,5 +36,15 @@ namespace Forest
                 Deers.Add(deer);
             }
         }
+
+        public void Kill(int i)
+        {
+            Deers.RemoveAt(i);
+        }
+
+        public int GetCount()
+        {
+            return (Deers.Count);
+        }
     }
 }

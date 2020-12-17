@@ -188,6 +188,7 @@ namespace Forest
                 }
 
                 DeerHerd.GrowHerd();
+                WolfPack.Hunt(DeerHerd);
             }
 
             //Foresters are only hired for 30 days a year, might as well make it simple, the first 30 days
@@ -333,6 +334,8 @@ namespace Forest
             Console.WriteLine("There are " + maple + " Maple Trees in the forest");
             Console.WriteLine("There are " + bug_hotel + " Bug Hotels in the forest");
             Console.WriteLine("There are " + dead + " dead trees in the forest");
+            Console.WriteLine("There are " + WolfPack.GetCount() + " wolves in the forest");
+            Console.WriteLine("There are " + DeerHerd.GetCount() + " deer in the forest");
             Console.WriteLine();
 
             int k = 0;
