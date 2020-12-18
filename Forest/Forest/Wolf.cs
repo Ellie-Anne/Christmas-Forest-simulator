@@ -30,7 +30,6 @@ namespace Forest
             age = _age;
         }
 
-        public void Eat()
         public bool Eat(Herd DeerHerd)
         {
             if (DeerHerd.GetCount() >=12)
