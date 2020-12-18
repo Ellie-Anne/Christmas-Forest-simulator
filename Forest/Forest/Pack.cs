@@ -48,12 +48,13 @@ namespace Forest
             int random;
             bool gender;
 
-            foreach (Wolf wolf in Wolves)
+            for(int i = 0; i< Wolves.Count; i++)
             {
-                if (wolf.getGender() == false)
+                if (Wolves[i].getGender() == false)
                 {
                     random = rnd.Next(0, 2);
-
+                    Wolves[i].incrementAge();
+                    
                     if(random == 0)
                     {
                         gender = true;
@@ -65,12 +66,13 @@ namespace Forest
 
                     Wolves.Add(new Wolf(0, gender));
                 }
-                else if (wolf.getGender() == true & wolf.getAge() >= 3)
+                else if (Wolves[i].getGender() == true & Wolves[i].getAge() >= 3)
                 {
-                    Wolves.Remove(wolf);
+                    Wolves.RemoveAt(i);
+                    i -= 1;
                 }
 
-                wolf.incrementAge();
+                
             }
         }
     }
