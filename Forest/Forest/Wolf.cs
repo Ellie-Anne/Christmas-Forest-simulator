@@ -6,7 +6,6 @@ namespace Forest
 {
     class Wolf
     {
-        public bool Eat(Herd DeerHerd)
         private bool gender;
         private int age;
 
@@ -26,9 +25,9 @@ namespace Forest
             return age;
         }
 
-        public void Eat()
+        public bool Eat(Herd DeerHerd)
         {
-            if (DeerHerd.GetCount >=12)
+            if (DeerHerd.GetCount() >=12)
             {
                 DeerHerd.Kill(0);
                 return (true);
