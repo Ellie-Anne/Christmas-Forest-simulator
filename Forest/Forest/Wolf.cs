@@ -25,9 +25,9 @@ namespace Forest
             return age;
         }
 
-        public void setAge(int _age)
+        public void incrementAge()
         {
-            age = _age;
+            age = age + 1;
         }
 
         public bool Eat(Herd DeerHerd)
