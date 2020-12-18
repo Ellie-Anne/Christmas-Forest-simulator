@@ -66,6 +66,8 @@ namespace Forest
                 {
                     Wolves.Remove(wolf);
                 }
+
+                wolf.incrementAge();
             }
         }
     }
