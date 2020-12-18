@@ -28,12 +28,19 @@ namespace Forest
 
         public void Hunt(Herd DeerHerd)
         {
-            foreach(Wolf wolf in Wolves)
+            List<int> DeadWolves = new List<int>();
+
+            for(int i = 0; i<Wolves.Count; i++)
             {
-                if (wolf.Eat(DeerHerd) == false)
+                if (Wolves[i].Eat(DeerHerd) == false)
                 {
-                    Wolves.Remove(wolf);
+                    DeadWolves.Add(i);
                 }
+            }
+
+            for(int i = DeadWolves.Count - 1; i>=0; i--)
+            {
+                Wolves.RemoveAt(DeadWolves[i]);
             }
         }
 
@@ -47,13 +54,15 @@ namespace Forest
             Random rnd = new Random();
             int random;
             bool gender;
+            int Count = Wolves.Count;
 
-            for(int i = 0; i< Wolves.Count; i++)
+            for(int i = 0; i< Count; i++)
             {
+                Wolves[i].incrementAge();
+                
                 if (Wolves[i].getGender() == false)
                 {
                     random = rnd.Next(0, 2);
-                    Wolves[i].incrementAge();
                     
                     if(random == 0)
                     {
