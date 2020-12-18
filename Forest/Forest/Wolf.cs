@@ -25,6 +25,11 @@ namespace Forest
             return age;
         }
 
+        public void incrementAge()
+        {
+            age = age + 1;
+        }
+
         public bool Eat(Herd DeerHerd)
         {
             if (DeerHerd.GetCount() >=12)
