@@ -8,6 +8,13 @@ namespace Forest
     {
         private List<Wolf> Wolves = new List<Wolf>();
 
+        public Pack()
+        {
+            Wolf wolf;
+            wolf = new Wolf(0, true);
+            Wolves.Add(wolf);
+        }
+
         public void Hunt(Herd DeerHerd)
         {
             foreach(Wolf wolf in Wolves)
