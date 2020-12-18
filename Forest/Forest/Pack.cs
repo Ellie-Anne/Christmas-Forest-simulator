@@ -20,7 +20,10 @@ namespace Forest
                 Wolves.Add(wolf);
             }
 
-            
+            for(int i = 0; i < 5; i++)
+            {
+                NewYear();
+            }
         }
 
         public void Hunt(Herd DeerHerd)
