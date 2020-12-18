@@ -189,6 +189,7 @@ namespace Forest
 
                 DeerHerd.GrowHerd();
                 WolfPack.Hunt(DeerHerd);
+                WolfPack.NewYear();
             }
 
             //Foresters are only hired for 30 days a year, might as well make it simple, the first 30 days
