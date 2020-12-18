@@ -36,5 +36,35 @@ namespace Forest
         {
             return (Wolves.Count);
         }
+
+        public void NewYear()
+        {
+            Random rnd = new Random();
+            int random;
+            bool gender;
+
+            foreach (Wolf wolf in Wolves)
+            {
+                if (wolf.getGender() == false)
+                {
+                    random = rnd.Next(0, 2);
+
+                    if(random == 0)
+                    {
+                        gender = true;
+                    }
+                    else
+                    {
+                        gender = false;
+                    }
+
+                    Wolves.Add(new Wolf(0, gender));
+                }
+                else if (wolf.getGender() == true & wolf.getAge() >= 3)
+                {
+                    Wolves.Remove(wolf);
+                }
+            }
+        }
     }
 }
