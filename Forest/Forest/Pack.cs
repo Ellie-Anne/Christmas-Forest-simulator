@@ -19,6 +19,8 @@ namespace Forest
                 wolf = new Wolf(0, false);
                 Wolves.Add(wolf);
             }
+
+            
         }
     }
 }

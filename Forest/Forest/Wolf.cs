@@ -25,6 +25,11 @@ namespace Forest
             return age;
         }
 
+        public void setAge(int _age)
+        {
+            age = _age;
+        }
+
         public void Eat()
         {
 
